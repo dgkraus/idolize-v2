@@ -1,0 +1,11 @@
+.search-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    max-width: 900px;
+    height: 100vh;
+    margin: 0 auto;
+    padding: 20px;
+}

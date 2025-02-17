@@ -1,16 +1,20 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router} from "react-router-dom"
 
-import { ProfileView } from "./components/ProfileView"
-import { IdolForm } from "./components/IdolSearch"
+import { ThemeProvider } from '@mui/material/styles';
+import theme from './styles/theme';
+
+import NavBar from "./components/NavBar"
+import AnimatedRoutes from "./components/AnimatedRoutes";
+
 
 function App() {
   return (
+    <ThemeProvider theme={theme}>
     <Router>
-      <Routes>
-        <Route path="/" element={<IdolForm />} />
-        <Route path="/idols/:idolId" element={<ProfileView />} />
-      </Routes>
+      <NavBar />
+      <AnimatedRoutes />
     </Router>
+    </ThemeProvider>
   )
 }
 

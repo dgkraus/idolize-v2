@@ -1,8 +1,11 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import { motion } from "framer-motion"
 
-export const IdolForm: React.FC = () => {
+import "../styles/Search.css"
+
+export const IdolSearch: React.FC = () => {
   const [query, setQuery] = useState("")
   const [results, setResults] = useState<any[]>([])
   const [error, setError] = useState("")
@@ -39,7 +42,11 @@ export const IdolForm: React.FC = () => {
   }
 
   return (
-    <div>
+    <motion.div
+    initial={{width: 0}}
+    animate={{width: "100%"}}
+    exit={{x: window.innerWidth, transition: {duration: 0.1}}}
+    className="search-container">
       <h1>Idol search</h1>
       <input onChange={handleChange} onKeyDown={handleKeyDown}/>
       <button onClick={handleSearch}>Search</button>
@@ -60,6 +67,6 @@ export const IdolForm: React.FC = () => {
       ) : (
         <p>No results found.</p>
       )}
-    </div>
+    </motion.div>
   )
 }

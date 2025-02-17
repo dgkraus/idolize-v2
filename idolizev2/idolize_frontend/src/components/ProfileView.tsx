@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import "../styles/Profile.css"
+import { motion } from "framer-motion"
   
   export const ProfileView: React.FC = () => {
     const { idolId } = useParams()
@@ -34,17 +36,50 @@ import axios from 'axios';
     const idolImage = images(`./${idolImageName}_profile_pic.jpg`)
   
     return (
-      <div>
-        <h1>Idol Profile</h1>
-        <p><strong>Name:</strong> {idol.idol_name}</p>
-        <p><strong>Nickname:</strong> {idol.nickname}</p>
-        <p><strong>Birthdate:</strong> {idol.birthdate}</p>
-        <p><strong>Birthplace:</strong> {idol.birthplace}</p>
-        <p><strong>Height:</strong> {idol.height} cm</p>
-        <p><strong>Zodiac Sign:</strong> {idol.zodiac}</p>
-        <p><strong>Twitter:</strong> <a href={idol.sns.Twitter} target="_blank" rel="noopener noreferrer">{idol.sns.Twitter}</a></p>
-        <p><strong>Instagram:</strong> <a href={idol.sns.Instagram} target="_blank" rel="noopener noreferrer">{idol.sns.Instagram}</a></p>
-        <p><img src={idolImage} alt="not found"></img></p>
+      <motion.div
+      initial={{width: 0}}
+      animate={{width: "100%"}}
+      exit={{x: window.innerWidth, transition: {duration: 0.1}}} 
+      className="profile-container">
+        <div className="profile-details">
+          <h1 className="profile-name">{idol.idol_name}</h1>
+          <div className="sns-links">
+          <a
+            href={idol.sns.Twitter}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="twitter"
+          > </a>
+          <a
+            href={idol.sns.Instagram}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="instagram"
+          > </a>
+          <a
+            href={idol.sns.TikTok}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="tiktok"
+          > </a>
+          <a
+            href={idol.sns.Youtube}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="youtube"
+          > </a>
+          <h3 className="age">Age: {idol.birthdate}</h3>
+          <h3 className="birthplace">Birthplace: {idol.birthplace}</h3>
+          <h3 className="height">Height: {idol.height} cm</h3>
+          <h3 className="zodiac">Zodiac: {idol.zodiac}</h3>
+        </div>
+        <p className="profile-description">
+          Add interesting information about performer that fans want to know.
+          </p>
       </div>
+        <div className="profile-image-container">
+          <img src={idolImage} alt={idol.idol_name} className="profile-image" />
+        </div>
+      </motion.div>
     )
   }
